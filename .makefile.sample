@@ -1,0 +1,24 @@
+CC            = gcc
+CFLAGS        = -O4 -Wall
+SRCDIR        = src
+SUBDIR        = librtmp
+PROGRAM       = streamer
+TARGET        = $(DEST)/$(PROGRAM)
+SRCS          = $(wildcard $(SRCDIR)/*.c) $(wildcard $(SRCDIR)/$(SUBDIR)/*.c)
+OBJS          = $(patsubst %.c,%.o,$(SRCS))
+
+
+all:$(TARGET)
+
+$(TARGET):$(OBJS)
+	$(CC) -o $@ $^
+
+$(OUTDIR)/%.o:%.c
+	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
+	$(CC) -o $@ -c $<
+
+clean:
+	@rm -f *.o *~ $(PROGRAM)
+
+install:$(PROGRAM)
+	install -s $(PROGRAM) $(SRCDIR)
