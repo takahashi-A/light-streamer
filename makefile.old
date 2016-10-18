@@ -1,8 +1,8 @@
 CC            = gcc
 CFLAGS        = -O3 -Wall
-INCLUDE       = /usr/local/include
-LIBDIR        = /usr/local/lib
-LIB           = avcodec -lavutil
+INCLUDE       = /usr/local/opt/rtmpdump/include
+LIBDIR        = /usr/local/opt/rtmpdump/lib
+LIB           = rtmp
 SRCDIR        = src
 PROGRAM       = streamer
 DEST          = target
